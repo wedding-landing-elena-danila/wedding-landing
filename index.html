@@ -16,13 +16,13 @@
             --ink: #170a0a;
             --ink-soft: #4a1616;
             --ink-light: #8a6560;
-            --red: #c81324;
+            --red: #650010;
             --red-deep: #650010;
-            --red-bright: #e2263a;
+            --red-bright: #650010;
             --rose-pale: #f2d3d3;
             --accent-on-dark: #ffb3bb;
-            --line: rgba(200,19,36,0.28);
-            --line-strong: rgba(200,19,36,0.55);
+            --line: rgba(101,0,16,0.28);
+            --line-strong: rgba(101,0,16,0.55);
             --font-serif: 'Cormorant Garamond', Georgia, serif;
             --font-sans: 'Jost', sans-serif;
         }
@@ -39,29 +39,11 @@
             position: relative;
         }
 
-        /* ── PAGE FRAME ── */
-        body::before, body::after {
-            content: '';
-            position: fixed;
-            top: 0; bottom: 0;
-            width: 3px;
-            background: var(--red);
-            opacity: 0.55;
-            z-index: 500;
-            pointer-events: none;
-        }
-        body::before { left: 10px; }
-        body::after { right: 10px; }
-
         .top-ribbon {
             position: relative;
             height: 10px;
             width: 100%;
-            background: repeating-linear-gradient(135deg, var(--red) 0 10px, var(--red-deep) 10px 20px);
-        }
-
-        @media (max-width: 640px) {
-            body::before, body::after { display: none; }
+            background: var(--red-deep);
         }
 
         /* ── CORNER ORNAMENTS ── */
@@ -92,7 +74,7 @@
 
         .hero-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
         .hero-bg-circle { position: absolute; border-radius: 50%; opacity: 0.9; mix-blend-mode: multiply; }
-        .hero-bg-circle.c1 { width: 620px; height: 620px; top: -240px; right: -180px; background: radial-gradient(circle, rgba(200,19,36,0.30), transparent 70%); }
+        .hero-bg-circle.c1 { width: 620px; height: 620px; top: -240px; right: -180px; background: radial-gradient(circle, rgba(101,0,16,0.30), transparent 70%); }
         .hero-bg-circle.c2 { width: 520px; height: 520px; bottom: -160px; left: -140px; background: radial-gradient(circle, rgba(101,0,16,0.28), transparent 70%); }
 
         .hero-heart { margin-bottom: 18px; opacity: 0; animation: fadeUp 1s ease 0.1s forwards; }
@@ -169,6 +151,9 @@
             flex-direction: column;
             align-items: center;
             gap: 8px;
+            background: var(--red-deep);
+            padding: 30px 50px;
+            border-radius: 16px;
             opacity: 0;
             animation: fadeUp 1s ease 0.6s forwards;
         }
@@ -177,12 +162,12 @@
             font-family: var(--font-serif);
             font-size: clamp(38px, 7vw, 62px);
             font-weight: 600;
-            color: var(--red);
+            color: var(--paper);
             letter-spacing: 0.05em;
         }
 
-        .hero-date-label { font-size: 12px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-light); }
-        .hero-place { margin-top: 6px; font-family: var(--font-serif); font-size: 20px; font-style: italic; font-weight: 600; color: var(--red-deep); }
+        .hero-date-label { font-size: 12px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(248,244,236,0.7); }
+        .hero-place { margin-top: 6px; font-family: var(--font-serif); font-size: 20px; font-style: italic; font-weight: 600; color: var(--accent-on-dark); }
 
         .hero-scroll {
             margin-top: auto;
@@ -324,6 +309,7 @@
             transition: transform 0.5s ease;
         }
         .photo-item:hover img { transform: scale(1.04); }
+
         /* LIGHTBOX */
         .lightbox { display: none; position: fixed; inset: 0; background: rgba(10,3,3,0.94); z-index: 1000; align-items: center; justify-content: center; cursor: zoom-out; padding: 20px; }
         .lightbox.open { display: flex; }
@@ -353,7 +339,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(200,19,36,0.38) 0%, transparent 70%);
+            background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(101,0,16,0.38) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -390,12 +376,28 @@
             text-transform: uppercase;
             padding: 20px 60px;
             border-radius: 3px;
-            box-shadow: 0 10px 26px rgba(200,19,36,0.4);
+            box-shadow: 0 10px 26px rgba(101,0,16,0.4);
             transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
         }
-        .rsvp-btn:hover { background: var(--red-bright); transform: translateY(-2px); box-shadow: 0 14px 32px rgba(226,38,58,0.5); }
+        .rsvp-btn:hover { background: var(--red-bright); transform: translateY(-2px); box-shadow: 0 14px 32px rgba(101,0,16,0.5); }
 
         .rsvp-deadline { margin-top: 24px; font-size: 14px; color: rgba(255,255,255,0.32); letter-spacing: 0.05em; }
+
+        /* БЕЛАЯ КАРТОЧКА ДЛЯ ФОРМЫ */
+        .form-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        .form-card iframe {
+            background: #fff;
+            border: none;
+            border-radius: 8px;
+            min-height: 500px;
+        }
 
         /* ── FOOTER ── */
         footer {
@@ -435,6 +437,8 @@
             .photo-row.single { height: 280px; }
             .corner-ornament { width: 64px; height: 64px; }
             .section-body { font-size: 19px; }
+            .hero-date-block { padding: 24px 30px; }
+            .form-card { padding: 16px; }
         }
     </style>
 </head>
@@ -451,46 +455,46 @@
 
     <div class="corner-ornament corner-tl">
         <svg viewBox="0 0 100 100" fill="none">
-            <path d="M6 6 L6 48 M6 6 L48 6" stroke="#c81324" stroke-width="1.4" opacity="0.85"/>
-            <circle cx="6" cy="6" r="3.5" fill="#c81324" opacity="0.9"/>
-            <circle cx="48" cy="6" r="2" fill="#c81324" opacity="0.5"/>
-            <circle cx="6" cy="48" r="2" fill="#c81324" opacity="0.5"/>
-            <path d="M14 6 Q22 18 32 6" stroke="#c81324" stroke-width="1.1" fill="none" opacity="0.55"/>
-            <path d="M6 14 Q18 22 6 32" stroke="#c81324" stroke-width="1.1" fill="none" opacity="0.55"/>
-            <path d="M20 6 C26 -2 34 2 30 10 C38 6 42 14 34 18" stroke="#c81324" stroke-width="0.9" fill="none" opacity="0.4"/>
+            <path d="M6 6 L6 48 M6 6 L48 6" stroke="#650010" stroke-width="1.4" opacity="0.85"/>
+            <circle cx="6" cy="6" r="3.5" fill="#650010" opacity="0.9"/>
+            <circle cx="48" cy="6" r="2" fill="#650010" opacity="0.5"/>
+            <circle cx="6" cy="48" r="2" fill="#650010" opacity="0.5"/>
+            <path d="M14 6 Q22 18 32 6" stroke="#650010" stroke-width="1.1" fill="none" opacity="0.55"/>
+            <path d="M6 14 Q18 22 6 32" stroke="#650010" stroke-width="1.1" fill="none" opacity="0.55"/>
+            <path d="M20 6 C26 -2 34 2 30 10 C38 6 42 14 34 18" stroke="#650010" stroke-width="0.9" fill="none" opacity="0.4"/>
         </svg>
     </div>
     <div class="corner-ornament corner-tr">
         <svg viewBox="0 0 100 100" fill="none">
-            <path d="M6 6 L6 48 M6 6 L48 6" stroke="#c81324" stroke-width="1.4" opacity="0.85"/>
-            <circle cx="6" cy="6" r="3.5" fill="#c81324" opacity="0.9"/>
-            <circle cx="48" cy="6" r="2" fill="#c81324" opacity="0.5"/>
-            <circle cx="6" cy="48" r="2" fill="#c81324" opacity="0.5"/>
-            <path d="M14 6 Q22 18 32 6" stroke="#c81324" stroke-width="1.1" fill="none" opacity="0.55"/>
-            <path d="M6 14 Q18 22 6 32" stroke="#c81324" stroke-width="1.1" fill="none" opacity="0.55"/>
-            <path d="M20 6 C26 -2 34 2 30 10 C38 6 42 14 34 18" stroke="#c81324" stroke-width="0.9" fill="none" opacity="0.4"/>
+            <path d="M6 6 L6 48 M6 6 L48 6" stroke="#650010" stroke-width="1.4" opacity="0.85"/>
+            <circle cx="6" cy="6" r="3.5" fill="#650010" opacity="0.9"/>
+            <circle cx="48" cy="6" r="2" fill="#650010" opacity="0.5"/>
+            <circle cx="6" cy="48" r="2" fill="#650010" opacity="0.5"/>
+            <path d="M14 6 Q22 18 32 6" stroke="#650010" stroke-width="1.1" fill="none" opacity="0.55"/>
+            <path d="M6 14 Q18 22 6 32" stroke="#650010" stroke-width="1.1" fill="none" opacity="0.55"/>
+            <path d="M20 6 C26 -2 34 2 30 10 C38 6 42 14 34 18" stroke="#650010" stroke-width="0.9" fill="none" opacity="0.4"/>
         </svg>
     </div>
     <div class="corner-ornament corner-bl">
         <svg viewBox="0 0 100 100" fill="none">
-            <path d="M6 6 L6 48 M6 6 L48 6" stroke="#c81324" stroke-width="1.4" opacity="0.85"/>
-            <circle cx="6" cy="6" r="3.5" fill="#c81324" opacity="0.9"/>
-            <circle cx="48" cy="6" r="2" fill="#c81324" opacity="0.5"/>
-            <circle cx="6" cy="48" r="2" fill="#c81324" opacity="0.5"/>
+            <path d="M6 6 L6 48 M6 6 L48 6" stroke="#650010" stroke-width="1.4" opacity="0.85"/>
+            <circle cx="6" cy="6" r="3.5" fill="#650010" opacity="0.9"/>
+            <circle cx="48" cy="6" r="2" fill="#650010" opacity="0.5"/>
+            <circle cx="6" cy="48" r="2" fill="#650010" opacity="0.5"/>
         </svg>
     </div>
     <div class="corner-ornament corner-br">
         <svg viewBox="0 0 100 100" fill="none">
-            <path d="M6 6 L6 48 M6 6 L48 6" stroke="#c81324" stroke-width="1.4" opacity="0.85"/>
-            <circle cx="6" cy="6" r="3.5" fill="#c81324" opacity="0.9"/>
-            <circle cx="48" cy="6" r="2" fill="#c81324" opacity="0.5"/>
-            <circle cx="6" cy="48" r="2" fill="#c81324" opacity="0.5"/>
+            <path d="M6 6 L6 48 M6 6 L48 6" stroke="#650010" stroke-width="1.4" opacity="0.85"/>
+            <circle cx="6" cy="6" r="3.5" fill="#650010" opacity="0.9"/>
+            <circle cx="48" cy="6" r="2" fill="#650010" opacity="0.5"/>
+            <circle cx="6" cy="48" r="2" fill="#650010" opacity="0.5"/>
         </svg>
     </div>
 
     <div class="hero-heart">
         <svg viewBox="0 0 40 36" fill="none">
-            <path d="M20 33 C6 24 1 16 1 9.5 C1 4 5 1 9.5 1 C13.5 1 17 3.5 20 8 C23 3.5 26.5 1 30.5 1 C35 1 39 4 39 9.5 C39 16 34 24 20 33 Z" fill="#c81324"/>
+            <path d="M20 33 C6 24 1 16 1 9.5 C1 4 5 1 9.5 1 C13.5 1 17 3.5 20 8 C23 3.5 26.5 1 30.5 1 C35 1 39 4 39 9.5 C39 16 34 24 20 33 Z" fill="#650010"/>
         </svg>
     </div>
 
@@ -529,7 +533,7 @@
 <!-- INVITE -->
 <section class="section reveal">
     <div style="max-width:600px;margin:0 auto;text-align:center;background:var(--rose-pale);border:1.5px solid var(--line-strong);border-radius:18px;padding:56px 32px;position:relative;">
-        <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:28px;height:28px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(200,19,36,0.4);">
+        <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:28px;height:28px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(101,0,16,0.4);">
             <svg viewBox="0 0 40 36" width="14" height="14" fill="#fff"><path d="M20 33 C6 24 1 16 1 9.5 C1 4 5 1 9.5 1 C13.5 1 17 3.5 20 8 C23 3.5 26.5 1 30.5 1 C35 1 39 4 39 9.5 C39 16 34 24 20 33 Z"/></svg>
         </div>
         <div style="display:flex;justify-content:center"><span class="section-tag">Приглашение</span></div>
@@ -543,18 +547,16 @@
         </p>
         <div class="flourish">
             <svg viewBox="0 0 200 30" fill="none">
-                <line x1="0" y1="15" x2="65" y2="15" stroke="#c81324" stroke-width="1.2" opacity="0.6"/>
-                <line x1="135" y1="15" x2="200" y2="15" stroke="#c81324" stroke-width="1.2" opacity="0.6"/>
-                <path d="M78 15 Q84 4 90 15 Q96 26 102 15 Q108 4 114 15 Q120 26 126 15" stroke="#c81324" stroke-width="1.3" fill="none" opacity="0.8"/>
-                <circle cx="72" cy="15" r="2.4" fill="#c81324" opacity="0.6"/>
-                <circle cx="132" cy="15" r="2.4" fill="#c81324" opacity="0.6"/>
-                <path d="M100 8 C97 3 92 4 93 9 C89 6 86 10 90 13 C86 16 89 20 93 17 C92 22 97 23 100 18 C103 23 108 22 107 17 C111 20 114 16 110 13 C114 10 111 6 107 9 C108 4 103 3 100 8Z" fill="#c81324" opacity="0.85"/>
+                <line x1="0" y1="15" x2="65" y2="15" stroke="#650010" stroke-width="1.2" opacity="0.6"/>
+                <line x1="135" y1="15" x2="200" y2="15" stroke="#650010" stroke-width="1.2" opacity="0.6"/>
+                <path d="M78 15 Q84 4 90 15 Q96 26 102 15 Q108 4 114 15 Q120 26 126 15" stroke="#650010" stroke-width="1.3" fill="none" opacity="0.8"/>
+                <circle cx="72" cy="15" r="2.4" fill="#650010" opacity="0.6"/>
+                <circle cx="132" cy="15" r="2.4" fill="#650010" opacity="0.6"/>
+                <path d="M100 8 C97 3 92 4 93 9 C89 6 86 10 90 13 C86 16 89 20 93 17 C92 22 97 23 100 18 C103 23 108 22 107 17 C111 20 114 16 110 13 C114 10 111 6 107 9 C108 4 103 3 100 8Z" fill="#650010" opacity="0.85"/>
             </svg>
         </div>
         <div style="margin-top:44px;">
-            <a class="rsvp-btn"
-               href="https://docs.google.com/forms/d/e/1FAIpQLSeFqaq991dZNm2Uc5knDFDLDeRJ2eteOsi6-uGZju729Sm9Nw/viewform?usp=publish-editor"
-               target="_blank" rel="noopener">Заполнить анкету</a>
+            <a class="rsvp-btn" href="#rsvp">Заполнить анкету</a>
             <p style="margin-top:14px;font-size:13px;color:var(--ink-light);letter-spacing:0.05em;">Просим ответить до 1 сентября 2026</p>
         </div>
     </div>
@@ -603,7 +605,6 @@
         <h2 class="section-title">Наша <em>история</em></h2>
     </div>
     <div class="photo-gallery" id="photoGallery">
-        <!-- JS builds rows based on actual image ratios -->
         <noscript>
             <div class="photo-row">
                 <div class="photo-item"><img src="images/photo1.jpg" alt="Фото 1"></div>
@@ -612,6 +613,7 @@
             <div class="photo-row">
                 <div class="photo-item"><img src="images/photo2.jpg" alt="Фото 2"></div>
                 <div class="photo-item"><img src="images/photo3.jpg" alt="Фото 3"></div>
+                <div class="photo-item"><img src="images/photo5.jpg" alt="Фото 5"></div>
             </div>
         </noscript>
     </div>
@@ -640,7 +642,7 @@
 </div>
 
 <!-- RSVP -->
-<div class="rsvp-section reveal">
+<div class="rsvp-section reveal" id="rsvp">
     <div class="rsvp-inner">
         <div style="display:flex;justify-content:center;gap:10px;align-items:center;font-size:11px;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:var(--red-bright);margin-bottom:20px;">
             <span style="width:32px;height:2px;background:var(--red-bright);display:block"></span>
@@ -653,12 +655,18 @@
             нам важно знать ваши пожелания по меню,
             напиткам и всему остальному.
         </p>
-        <a class="rsvp-btn"
-           href="https://docs.google.com/forms/d/e/1FAIpQLSeFqaq991dZNm2Uc5knDFDLDeRJ2eteOsi6-uGZju729Sm9Nw/viewform?usp=publish-editor"
-           target="_blank" rel="noopener">
-            Заполнить анкету
-        </a>
-        <p class="rsvp-deadline">Просим ответить до 1 сентября 2026 года</p>
+
+        <!-- БЕЛАЯ КАРТОЧКА С ФОРМОЙ -->
+        <div class="form-card">
+            <script src="https://forms.yandex.ru/_static/embed.js"></script>
+            <iframe
+                    src="https://forms.yandex.ru/u/6a7ce12d02848f3e63df88aa?iframe=1"
+                    frameborder="0"
+                    name="ya-form-6a7ce12d02848f3e63df88aa"
+                    width="100%"
+                    style="background: #fff; border: none; border-radius: 8px; min-height: 500px;"
+            ></iframe>
+        </div>
     </div>
 </div>
 
@@ -682,6 +690,7 @@
         'images/photo4.jpg',
         'images/photo2.jpg',
         'images/photo3.jpg',
+        'images/photo5.jpg'   // ← 5 фотографий, 2 ряда (2+3)
     ];
 
     const gallery = document.getElementById('photoGallery');
@@ -695,19 +704,25 @@
         img.onerror = () => resolve({ src, ratio: 4/3 });
         img.src = src;
     }))).then(imgs => {
-        // Group into rows of max 2, targeting combined ratio ~2.8
-        const TARGET = 2.8;
+        // Формируем ровно 2 ряда для 5 фото: 2 + 3
         const rows = [];
-        let i = 0;
-        while (i < imgs.length) {
-            const a = imgs[i];
-            const b = imgs[i + 1];
-            if (b && (a.ratio + b.ratio) <= TARGET + 0.8) {
-                rows.push([a, b]);
-                i += 2;
-            } else {
-                rows.push([a]);
-                i += 1;
+        if (imgs.length === 5) {
+            rows.push([imgs[0], imgs[1]]);
+            rows.push([imgs[2], imgs[3], imgs[4]]);
+        } else {
+            // Для другого количества — прежняя умная группировка
+            const TARGET = 2.8;
+            let i = 0;
+            while (i < imgs.length) {
+                const a = imgs[i];
+                const b = imgs[i + 1];
+                if (b && (a.ratio + b.ratio) <= TARGET + 0.8) {
+                    rows.push([a, b]);
+                    i += 2;
+                } else {
+                    rows.push([a]);
+                    i += 1;
+                }
             }
         }
 
