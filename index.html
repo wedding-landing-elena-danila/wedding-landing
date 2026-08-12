@@ -288,6 +288,25 @@
         .detail-main { font-family: var(--font-serif); font-size: 23px; font-weight: 500; line-height: 1.25; color: var(--paper); }
         .detail-sub { font-size: 13px; color: rgba(248,244,236,0.7); line-height: 1.5; }
 
+        /* НОВЫЙ БЛОК ДЛЯ КАРТИНКИ "КАК ПРОЙТИ" */
+        .route-image {
+            margin-top: 40px;
+            text-align: center;
+        }
+        .route-image img {
+            width: 100%;
+            max-width: 650px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+            display: block;
+            margin: 0 auto;
+            cursor: pointer; /* добавлено */
+            transition: transform 0.3s ease;
+        }
+        .route-image img:hover {
+            transform: scale(1.01);
+        }
+
         /* ── PHOTOS ── */
         .photos-section { overflow: hidden; background: transparent; }
         .photos-header { text-align: center; padding: 90px 24px 56px; }
@@ -439,6 +458,7 @@
             .section-body { font-size: 19px; }
             .hero-date-block { padding: 24px 30px; }
             .form-card { padding: 16px; }
+            .route-image img { max-width: 100%; }
         }
     </style>
 </head>
@@ -595,6 +615,11 @@
                 <span class="detail-sub">Сбор гостей<br>Фуршет</span>
             </div>
         </div>
+
+        <!-- КАРТИНКА "КАК ПРОЙТИ" -->
+        <div class="route-image">
+            <img src="images/route.jpg" alt="Как пройти к ресторану Рица" id="routeImage">
+        </div>
     </div>
 </div>
 
@@ -630,13 +655,11 @@
     <div class="gift-note-inner">
         <div style="display:flex;justify-content:center"><span class="section-tag">Вместо цветов</span></div>
         <h2 class="section-title">Небольшая <em>просьба</em></h2>
-        <div class="gift-icons">🎟️ 🐾 🤍</div>
+        <div class="gift-icons">🎟️ 🐾 🍾</div>
         <p class="gift-body">
             Если вы хотите сделать нам подарок —
-            мы будем рады лотерейному билету или
-            небольшому пожертвованию в приют для животных
-            или детский благотворительный фонд.<br><br>
-            <strong>Букеты завянут, а добрые дела — нет.</strong>
+            не нужно дарить цветы, они всё равно завянут.
+            Но мы будем рады интересному алкоголю, лотерейному билету или сухому корму для животных. <br> (Брит Премиум - для стерелизованных кошек или для мелких пород собак)<br><br>
         </p>
     </div>
 </div>
@@ -666,6 +689,11 @@
                     width="100%"
                     style="background: #fff; border: none; border-radius: 8px; min-height: 500px;"
             ></iframe>
+            <a class="rsvp-btn"
+               href="https://forms.yandex.ru/u/6a7ce12d02848f3e63df88aa/"
+               target="_blank"
+               rel="noopener"
+               style="margin-top: 20px;">Прямая ссылка на форму <br> (если не работает)</a>
         </div>
     </div>
 </div>
@@ -704,13 +732,11 @@
         img.onerror = () => resolve({ src, ratio: 4/3 });
         img.src = src;
     }))).then(imgs => {
-        // Формируем ровно 2 ряда для 5 фото: 2 + 3
         const rows = [];
         if (imgs.length === 5) {
             rows.push([imgs[0], imgs[1]]);
             rows.push([imgs[2], imgs[3], imgs[4]]);
         } else {
-            // Для другого количества — прежняя умная группировка
             const TARGET = 2.8;
             let i = 0;
             while (i < imgs.length) {
@@ -778,6 +804,14 @@
     document.addEventListener('keydown', e => {
         if (e.key === 'Escape') { lightbox.classList.remove('open'); document.body.style.overflow = ''; }
     });
+
+    // ── КЛИК ПО КАРТИНКЕ "КАК ПРОЙТИ" ──
+    const routeImage = document.getElementById('routeImage');
+    if (routeImage) {
+        routeImage.addEventListener('click', () => {
+            openLightbox(routeImage.src);
+        });
+    }
 </script>
 
 </body>
